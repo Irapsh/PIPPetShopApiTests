@@ -14,3 +14,17 @@ def create_pet():
 
     response = requests.post(url=f"{BASE_URL}/pet", json=payload)
     return response.json()
+
+@pytest.fixture(scope="function")
+#Фикстура для создания заказа
+def create_order():
+    payload = {
+        "id": 1,
+        "petId": 1,
+        "quantity": 1,
+        "status": "placed",
+        "complete": True
+    }
+
+    response = requests.post(url=f"{BASE_URL}/store/order", json=payload)
+    return response.json()
